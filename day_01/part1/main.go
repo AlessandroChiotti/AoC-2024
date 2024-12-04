@@ -9,19 +9,17 @@ import (
 )
 
 func check(e error) {
-    if e != nil {
-        panic(e)
-    }
+	if e != nil {
+		panic(e)
+	}
 }
-
-
 
 func readInput() ([]int, []int) {
 	l1 := []int{}
 	l2 := []int{}
 	data, err := os.ReadFile("./day_01/input.txt")
 	check(err)
-	
+
 	lines := strings.Split(string(data), "\n")
 	for _, line := range lines {
 		numbers := strings.Fields(line)
@@ -34,11 +32,10 @@ func readInput() ([]int, []int) {
 		check(err)
 		l1 = append(l1, n1)
 		l2 = append(l2, n2)
-   }
+	}
 
 	return l1, l2
 }
-
 
 func computeTotalDistance(l1, l2 []int) float64 {
 	totalDistance := 0.0

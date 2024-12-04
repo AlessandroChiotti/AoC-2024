@@ -9,17 +9,15 @@ import (
 )
 
 func check(e error) {
-    if e != nil {
-        panic(e)
-    }
+	if e != nil {
+		panic(e)
+	}
 }
 
-
-
-func readInput() ([][]int) {
+func readInput() [][]int {
 	data, err := os.ReadFile("./day_02/input.txt")
 	check(err)
-	
+
 	lines := strings.Split(string(data), "\n")
 	var reports = make([][]int, len(lines))
 	for i, line := range lines {
@@ -29,11 +27,10 @@ func readInput() ([][]int) {
 			check(err)
 			reports[i] = append(reports[i], n)
 		}
-   }
+	}
 
 	return reports
 }
-
 
 func countSafeReports(reports [][]int) int {
 	safeReports := 0
@@ -50,11 +47,11 @@ func countSafeReports(reports [][]int) int {
 			if (asc != (level2 > level1)) || level2 == level1 {
 				break
 			}
-			if math.Abs(float64(level2 - level1)) > 3 {
+			if math.Abs(float64(level2-level1)) > 3 {
 				break
 			}
 		}
-		if(j == len(report)) {
+		if j == len(report) {
 			safeReports++
 		}
 	}

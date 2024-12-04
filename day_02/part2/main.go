@@ -9,17 +9,15 @@ import (
 )
 
 func check(e error) {
-    if e != nil {
-        panic(e)
-    }
+	if e != nil {
+		panic(e)
+	}
 }
 
-
-
-func readInput() ([][]int) {
+func readInput() [][]int {
 	data, err := os.ReadFile("./day_02/input.txt")
 	check(err)
-	
+
 	lines := strings.Split(string(data), "\n")
 	var reports = make([][]int, len(lines))
 	for i, line := range lines {
@@ -29,7 +27,7 @@ func readInput() ([][]int) {
 			check(err)
 			reports[i] = append(reports[i], n)
 		}
-   }
+	}
 
 	return reports
 }
@@ -44,7 +42,7 @@ func testSafety(report []int) bool {
 		if (asc != (level2 > level1)) || level2 == level1 {
 			return false
 		}
-		if math.Abs(float64(level2 - level1)) > 3 {
+		if math.Abs(float64(level2-level1)) > 3 {
 			return false
 		}
 	}
@@ -52,11 +50,10 @@ func testSafety(report []int) bool {
 }
 
 func RemoveIndex(s []int, index int) []int {
-    ret := make([]int, 0)
-    ret = append(ret, s[:index]...)
-    return append(ret, s[index+1:]...)
+	ret := make([]int, 0)
+	ret = append(ret, s[:index]...)
+	return append(ret, s[index+1:]...)
 }
-
 
 func countSafeReports(reports [][]int) int {
 	safeReports := 0
@@ -66,14 +63,14 @@ func countSafeReports(reports [][]int) int {
 		}
 
 		isReportSafe := testSafety(report)
-		if(isReportSafe) {
+		if isReportSafe {
 			safeReports++
 			continue
 		}
 
-		for i:= 0 ; i < len(report); i++ {
+		for i := 0; i < len(report); i++ {
 			partialReport := RemoveIndex(report, i)
-			if(testSafety(partialReport)) {
+			if testSafety(partialReport) {
 				safeReports++
 				break
 			}

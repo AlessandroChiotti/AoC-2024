@@ -7,17 +7,15 @@ import (
 )
 
 func check(e error) {
-    if e != nil {
-        panic(e)
-    }
+	if e != nil {
+		panic(e)
+	}
 }
 
-
-
-func readInput() (string) {
+func readInput() string {
 	data, err := os.ReadFile("./day_03/input.txt")
 	check(err)
-	
+
 	memory := string(data)
 	return memory
 }
@@ -33,12 +31,11 @@ func computeResult(instructions []string) int {
 	return result
 }
 
-
 func extractValidInstructions(memory string) []string {
 	r, err := regexp.Compile(`mul\(\d{1,3},\d{1,3}\)`)
 	check(err)
 	instructions := r.FindAllString(memory, -1)
-	
+
 	return instructions
 }
 
